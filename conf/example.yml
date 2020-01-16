@@ -1,0 +1,7 @@
+---
+door:
+  name: door
+  address: 3
+brake:
+  name: brake
+  address: 4
