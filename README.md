@@ -23,7 +23,7 @@ Upon calling this service, the server will read the desired configuration stored
 Let's put some configuration parameters to the parameter server manually with the following commands
 ```
 $ rosparam set new_gpio_configuration/door_lock/name/ 'set_lock'
-$ rosparam set new_gpio_configuration/door_lock/set_lock/ 3
+$ rosparam set new_gpio_configuration/door_lock/address/ 3
 $ rosparam set new_gpio_configuration/brake/name/ 'set_brake'
 $ rosparam set new_gpio_configuration/brake/address/ 4
 ```
