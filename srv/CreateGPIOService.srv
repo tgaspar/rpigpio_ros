@@ -1,5 +1,0 @@
-string name     # The namespace of the service that will control the GPIO
-uint8 address   # The GPIO that will be controlled by the newly created service
----
-bool success
-string message
