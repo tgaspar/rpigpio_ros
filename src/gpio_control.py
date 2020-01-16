@@ -14,8 +14,9 @@ CONF_PARAM = 'current_gpio_conf'
 
 class GPIOControl(object):
     _config = {}
+    _handlers = {}
     _gpio_services = []
-    _topic_publishers = None
+    _topic_publishers = []
 
     def __init__(self, configuration):
 
@@ -89,7 +90,8 @@ class GPIOControl(object):
 
                     # Start the service
                     self._gpio_services.append(rospy.Service(name, SetBool, self.set_gpio))
-
+                    # self._topic_publishers.append(
+                    #     rospy.Publisher('{}'.format(name), Bool, latch=True, queue_size=10)
 
                 else:
                     rospy.logwarn(
