@@ -52,6 +52,7 @@ class GPIOControl(object):
             msg = 'Updated services.'
             
             self.conf_to_srv(new_conf)
+            rospy.delete_param('new_gpio_configuration')
 
         except KeyError:
             rospy.logwarn('Configuration is empty')
@@ -65,6 +66,7 @@ class GPIOControl(object):
     def conf_to_srv(self, conf):
         try:
             for srv in conf:
+                print(srv)
                 address = conf[srv]['address']
                 name = conf[srv]['name']
 
