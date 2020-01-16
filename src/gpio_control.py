@@ -149,11 +149,13 @@ if __name__ == '__main__':
             rospy.logerr('Bad inputs.')
             raise Exception('If you chose to specify the names at lunch, you also must provide the addreses and vice versa.')
 
-        if len(args.name) is not len(args.addr):
-            rospy.logerr('The number of provided names do not match the number of provided addresses!')
-            raise Exception('Bad inputs.')
 
         if (args.name is not None) and (args.addr is not None):
+
+            if len(args.name) is not len(args.addr):
+                rospy.logerr('The number of provided names do not match the number of provided addresses!')
+                raise Exception('Bad inputs.')
+
             srv_names = (args.name)
             srv_addr = (args.addr)
             for name in srv_names:

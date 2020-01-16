@@ -71,3 +71,45 @@ Running
 $ rosrun rpigpio_ros gpio_control.py -n set_lock set_brake -a 4 3
 ```
 will have the same result as (in terms of exposing the services) as setting the parameters as descibed above.
+
+# Starting the server at boot
+
+To manage this server in the background, we will be using [supervisor](http://supervisord.org/). If you already have it installed, you can skip the next step
+
+## Install supervisor
+
+If you haven't done it yet, run:
+```
+$ sudo apt-get update
+```
+Then install `supervisor`:
+```
+$ sudo apt-get install supervisor
+```
+
+## Configure the supervisor configuration file
+
+**Note**: The following instructions are to be used as a template. Don't simply copy-paste stuff in the configuration file and expect it to work. Read carefuly and adjust according to your environment
+
+To simplify your life, we included a script (`util/supervisor.sh`) that can be run from `supervisor`. This script takes care to set up the environment variables so that the running of the commands is smoother. Pay extra attention to the line that specifies the `ROS_MASTER_URI` environment variable and adjust it to your needs.
+
+Open `supervisor`'s configuration file (`/etc/supervisor/supervisord.conf`) with your favorite editor (don't forget to `sudo`) and add the following lines at the bottom:
+```
+[program:rpigpio_srv]
+command=/bin/bash /home/<USER>/<ROS_WORKSPACE>/src/rpigpio_ros/util/supervisor.sh
+user=<USER>
+autorestart=true
+startretries=100
+stdout_logfile=</path/to/log/file.log>
+stderr_logfile=</path/to/errorlog/file.log>
+```
+
+Replace `<USER>` with the name of your user.
+
+Run supervisor:
+```
+$ supervisor
+```
+
+
+
