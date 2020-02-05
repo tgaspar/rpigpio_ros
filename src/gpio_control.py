@@ -4,8 +4,6 @@ import rospy
 import RPi.GPIO as GPIO
 from std_msgs.msg import Bool
 from std_srvs.srv import Trigger, SetBool
-
-from raspgpio.srv import *
 import time
 from argparse import ArgumentParser
 import yaml
